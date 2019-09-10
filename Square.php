@@ -1,12 +1,16 @@
 <?php
-class Square implements Resizeable
+include_once ('Resizeable.php');
+include_once ('Shape.php');
+class Square extends Shape implements Resizeable
 {
     public $width;
 
-    public function __construct($width)
+    public function __construct($name, $width)
     {
+        parent::__construct($name);
         $this->width = $width;
     }
+
     function getWidth(){
         return $this->width;
     }
@@ -18,7 +22,6 @@ class Square implements Resizeable
     }
     function resize($doublePercent)
     {
-        $this->width += $doublePercent;
-        echo "Square resize: " . $this->getArea();
+        return $this->getArea() + ($this->getArea() * $doublePercent / 100);
     }
 }

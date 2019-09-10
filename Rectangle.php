@@ -1,15 +1,18 @@
 <?php
 include_once ('Resizeable.php');
-class Rectangle implements Resizeable
+include_once ('Shape.php');
+class Rectangle extends Shape implements Resizeable
 {
     public $width;
     public $height;
 
-    public function __construct($width, $height)
+    public function __construct($name, $width, $height)
     {
+        parent::__construct($name);
         $this->width = $width;
         $this->height = $height;
     }
+
     function getWidth(){
         return $this->width;
     }
@@ -27,8 +30,6 @@ class Rectangle implements Resizeable
     }
 
     public function resize($doublePercent){
-        $this->width += $doublePercent;
-        $this->height += $doublePercent;
-        echo "Rectangle resize: " . $this->getArea();
+        return $this->getArea() + ($this->getArea() * $doublePercent / 100);
     }
 }
